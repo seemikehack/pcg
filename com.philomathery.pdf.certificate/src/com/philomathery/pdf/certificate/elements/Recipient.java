@@ -17,9 +17,8 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Recipient element of a
- * {@link com.philomathery.pdf.certificate.generator.Certificate Certificate},
- * for the name of the person or organization receiving the award.
+ * Recipient element of a {@link com.philomathery.pdf.certificate.Certificate
+ * Certificate}, for the name of the person or organization receiving the award.
  */
 public class Recipient extends CertificateElement
 {

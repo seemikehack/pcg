@@ -17,9 +17,8 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Salutation element of a
- * {@link com.philomathery.pdf.certificate.generator.Certificate Certificate},
- * for preamble, introduction, etc.
+ * Salutation element of a {@link com.philomathery.pdf.certificate.Certificate
+ * Certificate}, for preamble, introduction, etc.
  */
 public class Salutation extends CertificateElement
 {

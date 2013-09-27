@@ -17,9 +17,8 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Officiator element of a
- * {@link com.philomathery.pdf.certificate.generator.Certificate Certificate},
- * for signature blocks of those approving the award and such.
+ * Officiator element of a {@link com.philomathery.pdf.certificate.Certificate
+ * Certificate}, for signature blocks of those approving the award and such.
  */
 public class Officiator extends CertificateElement
 {

@@ -17,9 +17,8 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Header element of a
- * {@link com.philomathery.pdf.certificate.generator.Certificate Certificate},
- * for organization title, event title, etc.
+ * Header element of a {@link com.philomathery.pdf.certificate.Certificate
+ * Certificate}, for organization title, event title, etc.
  */
 public class Header extends CertificateElement
 {

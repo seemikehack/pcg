@@ -17,9 +17,8 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Citation element of a
- * {@link com.philomathery.pdf.certificate.generator.Certificate Certificate},
- * for details about the recipient's actions or the award itself.
+ * Citation element of a {@link com.philomathery.pdf.certificate.Certificate
+ * Certificate}, for details about the recipient's actions or the award itself.
  */
 public class Citation extends CertificateElement
 {
