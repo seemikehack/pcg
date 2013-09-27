@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.generator;
+package com.philomathery.pdf.certificate;
 
 import java.net.URI;
 import java.util.Collection;

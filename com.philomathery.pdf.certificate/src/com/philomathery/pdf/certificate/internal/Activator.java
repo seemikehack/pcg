@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.generator.internal;
+package com.philomathery.pdf.certificate.internal;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;

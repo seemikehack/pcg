@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.generator;
+package com.philomathery.pdf.certificate;
+
+import java.util.Collection;
+
+import javax.xml.transform.Source;
+
+import com.philomathery.pdf.certificate.elements.CertificateElement;
 
 /**
  * Represents a printable certificate.
  */
 public interface Certificate
 {
+   Source getSource();
 
+   Collection<CertificateElement> getElements();
 }

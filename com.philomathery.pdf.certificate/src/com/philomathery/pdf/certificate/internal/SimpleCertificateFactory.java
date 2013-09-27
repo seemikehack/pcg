@@ -14,12 +14,20 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.generator;
+package com.philomathery.pdf.certificate.internal;
 
-/**
- * Entry point for generating certificates.
- */
-public class CertificateGenerator
+import java.net.URI;
+import java.util.Collection;
+
+import com.philomathery.pdf.certificate.Certificate;
+import com.philomathery.pdf.certificate.CertificateFactory;
+import com.philomathery.pdf.certificate.elements.CertificateElement;
+
+public class SimpleCertificateFactory implements CertificateFactory
 {
-
+   @Override
+   public Certificate createCertificate(final Collection<CertificateElement> elements, final URI xslt)
+   {
+      return new SimpleCertificate(elements, xslt);
+   }
 }

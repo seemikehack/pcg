@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.generator.internal;
+package com.philomathery.pdf.certificate.internal;
 
 import java.net.URI;
 import java.nio.file.FileSystemNotFoundException;
@@ -23,8 +23,13 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 
+import javax.xml.transform.Source;
+import javax.xml.transform.sax.SAXSource;
+
+import com.philomathery.pdf.certificate.Certificate;
 import com.philomathery.pdf.certificate.elements.CertificateElement;
-import com.philomathery.pdf.certificate.generator.Certificate;
+import com.philomathery.pdf.certificate.internal.xml.CertificateInputSource;
+import com.philomathery.pdf.certificate.internal.xml.CertificateXMLReader;
 
 public class SimpleCertificate implements Certificate
 {
@@ -37,6 +42,7 @@ public class SimpleCertificate implements Certificate
       this.xslt = xslt;
    }
 
+   @Override
    public Collection<CertificateElement> getElements()
    {
       return Collections.unmodifiableCollection(elements);
@@ -45,5 +51,11 @@ public class SimpleCertificate implements Certificate
    public Path getXslt() throws FileSystemNotFoundException
    {
       return Paths.get(xslt);
+   }
+
+   @Override
+   public Source getSource()
+   {
+      return new SAXSource(new CertificateXMLReader(), new CertificateInputSource(this));
    }
 }
