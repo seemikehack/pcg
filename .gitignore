@@ -1,0 +1,6 @@
+!*/lib/*
+*.class
+*.jar
+*.ear
+*.war
+eclimd.log
