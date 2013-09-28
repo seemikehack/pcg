@@ -35,7 +35,7 @@ public class CertificateXMLReader extends AbstractObjectReader
       // this reader is not exposed as an OSGi service
       // the only things that would use it already know about it
       if (input instanceof CertificateInputSource)
-         parse(((CertificateInputSource) input).getCertificate());
+         parse(((CertificateInputSource)input).getCertificate());
       else
          throw new SAXException("Unsupported InputSource [" + input + "] specified.");
    }
@@ -83,8 +83,8 @@ public class CertificateXMLReader extends AbstractObjectReader
       final Iterator<CertificateElement> i = certificate.getElements().iterator();
       while (i.hasNext())
       {
-         final CertificateElement member = i.next();
-         generateFor(member);
+         final CertificateElement element = i.next();
+         generateFor(element);
       }
       handler.endElement("certificate");
    }
@@ -103,10 +103,8 @@ public class CertificateXMLReader extends AbstractObjectReader
       if (handler == null)
          throw new IllegalStateException("ContentHandler not set");
 
-      handler.startElement("member");
-//      handler.element("name", projectMember.getName());
-//      handler.element("function", projectMember.getFunction());
-//      handler.element("email", projectMember.getEmail());
-      handler.endElement("member");
+      handler.startElement("element");
+      handler.element(element.getName(), element.getContent());
+      handler.endElement("element");
    }
 }

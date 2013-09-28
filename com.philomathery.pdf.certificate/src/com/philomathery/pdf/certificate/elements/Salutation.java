@@ -27,4 +27,10 @@ public class Salutation extends CertificateElement
       super(elementText);
       // TODO Auto-generated constructor stub
    }
+
+   @Override
+   public String getName()
+   {
+      return "salutation";
+   }
 }

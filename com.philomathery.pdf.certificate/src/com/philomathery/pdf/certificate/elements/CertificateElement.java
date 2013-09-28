@@ -28,6 +28,13 @@ public abstract class CertificateElement
       this.elementText = elementText;
    }
 
+   public abstract String getName();
+
+   public String getContent()
+   {
+      return elementText;
+   }
+
    /*
     * Future development consideration:
     * 
