@@ -17,7 +17,6 @@
 package com.philomathery.pdf.certificate.internal.xml;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.Objects;
 
 import org.xml.sax.InputSource;
@@ -79,13 +78,8 @@ public class CertificateXMLReader extends AbstractObjectReader
          throw new IllegalStateException("ContentHandler not set");
 
       handler.startElement("certificate");
-//      handler.element("projectname", certificate.getProjectName());
-      final Iterator<CertificateElement> i = certificate.getElements().iterator();
-      while (i.hasNext())
-      {
-         final CertificateElement element = i.next();
+      for (final CertificateElement element : certificate.getElements())
          generateFor(element);
-      }
       handler.endElement("certificate");
    }
 
@@ -103,8 +97,6 @@ public class CertificateXMLReader extends AbstractObjectReader
       if (handler == null)
          throw new IllegalStateException("ContentHandler not set");
 
-      handler.startElement("element");
       handler.element(element.getName(), element.getContent());
-      handler.endElement("element");
    }
 }

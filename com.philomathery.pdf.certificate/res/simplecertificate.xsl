@@ -17,9 +17,6 @@
 <xsl:stylesheet version="1.1" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:fo="http://www.w3.org/1999/XSL/Format" exclude-result-prefixes="fo">
   <xsl:output method="xml" version="1.0" omit-xml-declaration="no" indent="yes"/>
   <xsl:param name="versionParam" select="'1.0'"/> 
-  <!-- ========================= -->
-  <!-- root element: certificate -->
-  <!-- ========================= -->
   <xsl:template match="certificate">
     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
       <fo:layout-master-set>
