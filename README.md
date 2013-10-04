@@ -9,7 +9,8 @@ library. You have been warned.
 ## How To Use
 Get a `CertificateFactory` and a `CertificateRenderer` via OSGi, and follow the
 API and the JavaDoc. I know, I know, code isn't its own documentation, just
-keep your eyes peeled for more to follow.
+keep your eyes peeled for more to follow. There are a couple of examples in the
+localtest package, knock yourself out.
 
 ## Before You Say It...
 It has been pointed out to me that this library stands to be much more
