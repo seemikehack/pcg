@@ -16,10 +16,26 @@
 
 package com.philomathery.pdf.certificate;
 
+import java.net.URI;
+
+import com.philomathery.pdf.certificate.exception.CertificateException;
+
 /**
  * Entry point for rendering the end-product PDF from a {@link Certificate}.
  */
-public class CertificateRenderer
+public interface CertificateRenderer
 {
+   /**
+    * Set the location for the final file to be written.
+    * 
+    * @param path
+    *           a {@link URI} specifying file path
+    * @throws CertificateException
+    *            if unable to locate the path to which to write the final file
+    */
+   void setOutputPath(URI path) throws CertificateException;
 
+   void setCertificate(Certificate certificate);
+
+   void render() throws CertificateException;
 }
