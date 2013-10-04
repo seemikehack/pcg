@@ -19,6 +19,7 @@ package com.philomathery.pdf.certificate;
 import java.net.URI;
 import java.util.Collection;
 
+import com.philomathery.pdf.certificate.elements.CertificateElement;
 import com.philomathery.pdf.certificate.exception.CertificateException;
 
 /**
@@ -27,7 +28,7 @@ import com.philomathery.pdf.certificate.exception.CertificateException;
 public interface CertificateFactory
 {
    /**
-    * Generate and populate a {@link Certificate}.
+    * Generate and populate a {@link Certificate}. Note that
     * 
     * @param elements
     *           the {@link CertificateElement}s to be rendered; must not be

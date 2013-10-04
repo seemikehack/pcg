@@ -17,20 +17,12 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Salutation element of a {@link com.philomathery.pdf.certificate.Certificate
- * Certificate}, for preamble, introduction, etc.
+ * Salutation element of a {@link Certificate}, for preamble, introduction, etc.
  */
 public class Salutation extends CertificateElement
 {
-   public Salutation(final String elementText)
+   public Salutation(final String content)
    {
-      super(elementText);
-      // TODO Auto-generated constructor stub
-   }
-
-   @Override
-   public String getName()
-   {
-      return "salutation";
+      super("salutation", content);
    }
 }

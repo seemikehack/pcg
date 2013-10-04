@@ -17,20 +17,13 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Header element of a {@link com.philomathery.pdf.certificate.Certificate
- * Certificate}, for organization title, event title, etc.
+ * Header element of a {@link Certificate}, for organization title, event title,
+ * etc.
  */
 public class Header extends CertificateElement
 {
-   public Header(final String elementText)
+   public Header(final String content)
    {
-      super(elementText);
-      // TODO Auto-generated constructor stub
-   }
-
-   @Override
-   public String getName()
-   {
-      return "header";
+      super("header", content);
    }
 }

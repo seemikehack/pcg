@@ -17,31 +17,39 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Superclass for all certificate elements.
+ * Implementation for all certificate elements. Currently, subclasses only
+ * represent placeholders to be caught by <code>xsl:apply-templates</code> tags
+ * in the XSLT.
  */
-public abstract class CertificateElement
+public class CertificateElement
 {
-   protected final String elementText;
+   protected final String name;
+   protected final String content;
 
-   public CertificateElement(final String elementText)
+   public CertificateElement(final String name, final String content)
    {
-      this.elementText = elementText;
+      this.name = name;
+      this.content = content;
    }
 
-   public abstract String getName();
+   /**
+    * Access the name of this {@link CertificateElement}, which will be matched
+    * by the XSLT when rendering the final certificate.
+    * 
+    * @return the name of this {@link CertificateElement}
+    */
+   public String getName()
+   {
+      return name;
+   }
 
+   /**
+    * Get the content to be rendered in this element.
+    * 
+    * @return the value of the content in this element
+    */
    public String getContent()
    {
-      return elementText;
+      return content;
    }
-
-   /*
-    * Future development consideration:
-    * 
-    * Uses the given render strategy to output formatted text representing the
-    * element.
-    * 
-    * @return a String containing formatted text representing the element
-    */
-//   public abstract String render(RenderStrategy strategy);
 }

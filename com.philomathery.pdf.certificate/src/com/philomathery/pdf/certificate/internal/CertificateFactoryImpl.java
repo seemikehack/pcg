@@ -17,19 +17,20 @@
 package com.philomathery.pdf.certificate.internal;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.Collection;
 import java.util.Objects;
 
 import com.philomathery.pdf.certificate.Certificate;
-import com.philomathery.pdf.certificate.CertificateElement;
 import com.philomathery.pdf.certificate.CertificateFactory;
 import com.philomathery.pdf.certificate.CertificateOptions;
+import com.philomathery.pdf.certificate.elements.CertificateElement;
 import com.philomathery.pdf.certificate.exception.CertificateException;
 import com.philomathery.pdf.certificate.exception.UnsupportedCertificateException;
 
 public class CertificateFactoryImpl implements CertificateFactory
 {
+   private static final String PROP_DEFAULT_XSLT_PATH = "com.philomathery.pdf.certificate.defaultxsltpath";
+
    // used for Declarative Service
    public void activate()
    {
@@ -51,19 +52,21 @@ public class CertificateFactoryImpl implements CertificateFactory
       {
          if (xslt == null)
          {
-            try
-            {
-               // FIXME This hasn't been tested yet, but I seem to remember that
-               // the URL returned by getResource() does not comply with RFC
-               // 2396 and will therefore always cause toURI() to throw its
-               // exception.
-               final URI defaultXslt = Activator.getContext().getBundle().getResource("res/simplecertificate.xsl").toURI();
-               return new SimpleCertificate(elements, defaultXslt, options);
-            }
-            catch (final URISyntaxException e)
-            {
-               throw new CertificateException("Unable to retrieve a default XSLT file for certificate type [" + certificateType + "]", e);
-            }
+            /*
+             * FIXME (or don't, really) the URL returned by getResource() does
+             * not comply with RFC 2396 and will therefore always cause toURI()
+             * to throw its exception.
+             */
+//            final URI defaultXslt = Activator.getContext().getBundle().getResource("res/simplecertificate.xsl").toURI();
+
+            /*
+             * NOTE this is a stop gap for the first pass effort, because this
+             * is not scalable in the first place and because this functionality
+             * will eventually get refactored out of this implementation and
+             * into a rendering implementation
+             */
+            final URI defaultXslt = URI.create(Activator.getContext().getProperty(PROP_DEFAULT_XSLT_PATH));
+            return new SimpleCertificate(elements, defaultXslt, options);
          }
          else
             return new SimpleCertificate(elements, xslt, options);

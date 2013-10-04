@@ -17,20 +17,13 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Citation element of a {@link com.philomathery.pdf.certificate.Certificate
- * Certificate}, for details about the recipient's actions or the award itself.
+ * Citation element of a {@link Certificate}, for details about the recipient's
+ * actions or the award itself.
  */
 public class Citation extends CertificateElement
 {
-   public Citation(final String elementText)
+   public Citation(final String content)
    {
-      super(elementText);
-      // TODO Auto-generated constructor stub
-   }
-
-   @Override
-   public String getName()
-   {
-      return "citation";
+      super("citation", content);
    }
 }

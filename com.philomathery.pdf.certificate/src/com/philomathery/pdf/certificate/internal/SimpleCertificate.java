@@ -27,6 +27,7 @@ import javax.xml.transform.Source;
 import javax.xml.transform.sax.SAXSource;
 
 import com.philomathery.pdf.certificate.Certificate;
+import com.philomathery.pdf.certificate.CertificateOptions;
 import com.philomathery.pdf.certificate.elements.CertificateElement;
 import com.philomathery.pdf.certificate.internal.xml.CertificateInputSource;
 import com.philomathery.pdf.certificate.internal.xml.CertificateXMLReader;
@@ -35,11 +36,13 @@ public class SimpleCertificate implements Certificate
 {
    private final Collection<CertificateElement> elements;
    private final URI xslt;
+   private final CertificateOptions options;
 
-   public SimpleCertificate(final Collection<CertificateElement> elements, final URI xslt)
+   public SimpleCertificate(final Collection<CertificateElement> elements, final URI xslt, final CertificateOptions options)
    {
       this.elements = elements;
       this.xslt = xslt;
+      this.options = options;
    }
 
    @Override
@@ -48,9 +51,15 @@ public class SimpleCertificate implements Certificate
       return Collections.unmodifiableCollection(elements);
    }
 
+   @Override
    public Path getXslt() throws FileSystemNotFoundException
    {
       return Paths.get(xslt);
+   }
+
+   public CertificateOptions getOptions()
+   {
+      return options;
    }
 
    @Override

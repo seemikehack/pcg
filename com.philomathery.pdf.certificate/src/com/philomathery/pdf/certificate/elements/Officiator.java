@@ -17,20 +17,13 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Officiator element of a {@link com.philomathery.pdf.certificate.Certificate
- * Certificate}, for signature blocks of those approving the award and such.
+ * Officiator element of a {@link Certificate}, for signature blocks of those
+ * approving the award and such.
  */
 public class Officiator extends CertificateElement
 {
-   public Officiator(final String elementText)
+   public Officiator(final String content)
    {
-      super(elementText);
-      // TODO Auto-generated constructor stub
-   }
-
-   @Override
-   public String getName()
-   {
-      return "officiator";
+      super("officiator", content);
    }
 }

@@ -17,20 +17,13 @@
 package com.philomathery.pdf.certificate.elements;
 
 /**
- * Recipient element of a {@link com.philomathery.pdf.certificate.Certificate
- * Certificate}, for the name of the person or organization receiving the award.
+ * Recipient element of a {@link Certificate}, for the name of the person or
+ * organization receiving the award.
  */
 public class Recipient extends CertificateElement
 {
-   public Recipient(final String elementText)
+   public Recipient(final String content)
    {
-      super(elementText);
-      // TODO Auto-generated constructor stub
-   }
-
-   @Override
-   public String getName()
-   {
-      return "recipient";
+      super("recipient", content);
    }
 }
