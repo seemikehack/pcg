@@ -4,3 +4,4 @@
 *.war
 eclimd.log
 !*/lib/*
+!*/.project
