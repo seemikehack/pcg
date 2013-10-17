@@ -97,6 +97,16 @@ public class CertificateXMLReader extends AbstractObjectReader
       if (handler == null)
          throw new IllegalStateException("ContentHandler not set");
 
-      handler.element(element.getName(), element.getContent());
+      if (element.getContent() != null)
+         handler.element(element.getName(), element.getContent());
+      else if (element.getMulticontent() != null)
+      {
+         handler.startElement(element.getName());
+         // FIXME this requires that the XSLT have tacit knowledge about the
+         // structure of the data
+         for (final String subelementName : element.getMulticontent().keySet())
+            handler.element(subelementName, element.getMulticontent().get(subelementName));
+         handler.endElement(element.getName());
+      }
    }
 }

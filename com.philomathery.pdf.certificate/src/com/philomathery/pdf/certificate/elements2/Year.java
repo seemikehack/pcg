@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.elements;
+package com.philomathery.pdf.certificate.elements2;
 
-import com.philomathery.pdf.certificate.Certificate;
+import com.philomathery.pdf.certificate.elements.CertificateElement;
 
-/**
- * Officiator element of a {@link Certificate}, for signature blocks of those
- * approving the award and such.
- */
-public class Officiator extends CertificateElement
+public class Year extends CertificateElement
 {
-   public Officiator(final String content)
+   public Year(final String content)
    {
-      super("officiator", content);
+      super("year", content);
    }
 }

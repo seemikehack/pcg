@@ -21,6 +21,8 @@ Bundle-ClassPath: lib/fop.jar,
  lib/xmlgraphics-commons-1.5.jar,
  .
 Export-Package: com.philomathery.pdf.certificate,
+ com.philomathery.pdf.certificate.elements,
+ com.philomathery.pdf.certificate.elements2,
  com.philomathery.pdf.certificate.exception
 Service-Component: META-INF/certificateFactory.xml,
  META-INF/certificateRenderer.xml

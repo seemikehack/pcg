@@ -5,3 +5,4 @@
 eclimd.log
 !*/lib/*
 !*/.project
+!*/.classpath

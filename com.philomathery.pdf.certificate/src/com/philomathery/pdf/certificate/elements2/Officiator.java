@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-package com.philomathery.pdf.certificate.elements;
+package com.philomathery.pdf.certificate.elements2;
+
+import java.util.Map;
 
 import com.philomathery.pdf.certificate.Certificate;
+import com.philomathery.pdf.certificate.elements.CertificateElement;
 
 /**
  * Officiator element of a {@link Certificate}, for signature blocks of those
@@ -25,6 +28,11 @@ import com.philomathery.pdf.certificate.Certificate;
 public class Officiator extends CertificateElement
 {
    public Officiator(final String content)
+   {
+      super("officiator", content);
+   }
+
+   public Officiator(final Map<String, String> content)
    {
       super("officiator", content);
    }

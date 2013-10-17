@@ -16,6 +16,8 @@
 
 package com.philomathery.pdf.certificate.elements;
 
+import java.util.Map;
+
 /**
  * Implementation for all certificate elements. Currently, subclasses only
  * represent placeholders to be caught by <code>xsl:apply-templates</code> tags
@@ -26,10 +28,22 @@ public class CertificateElement
    protected final String name;
    protected final String content;
 
+   // FIXME adding class invariant for first release, refactor ASAP
+   // input is assumed to be sorted by consumer of this API
+   protected final Map<String, String> multicontent;
+
    public CertificateElement(final String name, final String content)
    {
       this.name = name;
       this.content = content;
+      this.multicontent = null;
+   }
+
+   public CertificateElement(final String name, final Map<String, String> subcontent)
+   {
+      this.name = name;
+      this.content = null;
+      this.multicontent = subcontent;
    }
 
    /**
@@ -51,5 +65,10 @@ public class CertificateElement
    public String getContent()
    {
       return content;
+   }
+
+   public Map<String, String> getMulticontent()
+   {
+      return multicontent;
    }
 }
