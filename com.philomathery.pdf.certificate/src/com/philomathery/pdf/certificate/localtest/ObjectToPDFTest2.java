@@ -49,6 +49,7 @@ public class ObjectToPDFTest2
    {
       try (final OutputStream out = new FileOutputStream(pdf))
       {
+         fopFactory.setUserConfig("file:///home/michael/workspace/pdfcertgen/com.philomathery.pdf.certificate/res/fop.xconf");
          final FOUserAgent userAgent = fopFactory.newFOUserAgent();
          final Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, out);
          final TransformerFactory transformerFactory = TransformerFactory.newInstance();

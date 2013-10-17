@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<fop version="1.0">
+   <!-- Base URL for resolving relative URLs -->
+   <base>.</base>
+   <font-base>.</font-base>
+   <!-- Source resolution in dpi (dots/pixels per inch) for determining the size of pixels in SVG and bitmap images, default: 72dpi -->
+   <source-resolution>72</source-resolution>
+   <!-- Target resolution in dpi (dots/pixels per inch) for specifying the target resolution for generated bitmaps, default: 72dpi -->
+   <target-resolution>72</target-resolution>
+
+   <!-- Information for specific renderers -->
+   <!-- Uses renderer mime type for renderers -->
+   <renderers>
+      <renderer mime="application/pdf">
+         <filterList>
+            <!-- provides compression using zlib flate (default is on) -->
+            <value>flate</value>
+         </filterList>
+         <fonts>
+            <font embed-url="BRUSHSCI.TTF" kerning="yes">
+               <font-triplet name="Brush Script MT Italic" style="normal" weight="normal"/>
+            </font>
+         </fonts>
+      </renderer>
+   </renderers>
+</fop>
