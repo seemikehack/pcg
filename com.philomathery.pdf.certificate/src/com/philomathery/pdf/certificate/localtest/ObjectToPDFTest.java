@@ -41,28 +41,8 @@ import com.philomathery.pdf.certificate.Certificate;
  */
 public class ObjectToPDFTest
 {
-   private static final String BASE_OUTPUT_DIR = "/home/michael";
+   private static final String BASE_OUTPUT_DIR = "/home/cole/work";
    private static final String FILE_NAME = "award.pdf";
-   private final FopFactory fopFactory = FopFactory.newInstance();
-
-   public void convertCertificateToPDF(final Certificate certificate, final File pdf)
-   {
-      try (final OutputStream out = new FileOutputStream(pdf))
-      {
-         final FOUserAgent userAgent = fopFactory.newFOUserAgent();
-         final Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, out);
-         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-         final Transformer transformer = transformerFactory.newTransformer(new StreamSource(Files.newInputStream(certificate.getXslt(), StandardOpenOption.READ)));
-         final Source source = certificate.getSource();
-         final Result result = new SAXResult(fop.getDefaultHandler());
-         transformer.transform(source, result);
-      }
-      catch (final Exception e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-   }
 
    public static void main(final String[] args)
    {
@@ -76,9 +56,28 @@ public class ObjectToPDFTest
          System.out.println("Transforming...");
          test.convertCertificateToPDF(ObjectToXMLTest.createSampleCertificate(), pdfFile);
          System.out.println("Success! File output to " + pdfFile);
-      }
-      catch (final Exception e)
+      }catch(final Exception e)
       {
+         e.printStackTrace();
+      }
+   }
+
+   private final FopFactory fopFactory = FopFactory.newInstance();
+
+   public void convertCertificateToPDF(final Certificate certificate, final File pdf)
+   {
+      try (final OutputStream out = new FileOutputStream(pdf))
+      {
+         final FOUserAgent userAgent = fopFactory.newFOUserAgent();
+         final Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, out);
+         final TransformerFactory transformerFactory = TransformerFactory.newInstance();
+         final Transformer transformer = transformerFactory.newTransformer(new StreamSource(Files.newInputStream(certificate.getXslt(), StandardOpenOption.READ)));
+         final Source source = certificate.getSource();
+         final Result result = new SAXResult(fop.getDefaultHandler());
+         transformer.transform(source, result);
+      }catch(final Exception e)
+      {
+         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }

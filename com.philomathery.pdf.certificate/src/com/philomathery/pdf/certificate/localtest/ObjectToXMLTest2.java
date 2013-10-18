@@ -39,7 +39,6 @@ import com.philomathery.pdf.certificate.elements2.Place;
 import com.philomathery.pdf.certificate.elements2.Recipient;
 import com.philomathery.pdf.certificate.elements2.Year;
 import com.philomathery.pdf.certificate.internal.CertificateFactoryImpl;
-import com.philomathery.pdf.certificate.internal.SimpleCertificate;
 
 /**
  * An example test harness for proof of concept.
@@ -49,23 +48,6 @@ public class ObjectToXMLTest2
    private static final String XSLT_URI = "file:///home/michael/workspace/pdfcertgen/com.philomathery.pdf.certificate/res/simplecertificate2.xsl";
    private static final String BASE_OUTPUT_DIR = "/home/michael";
    private static final String FILE_NAME = "award.xml";
-
-   private void convertCertificateToXML(final Certificate certificate, final File xml)
-   {
-      try
-      {
-         final TransformerFactory factory = TransformerFactory.newInstance();
-         final Transformer transformer = factory.newTransformer();
-         final Source source = certificate.getSource();
-         final StreamResult result = new StreamResult(xml);
-         transformer.transform(source, result);
-      }
-      catch (final TransformerException e)
-      {
-         // TODO Auto-generated catch block
-         e.printStackTrace();
-      }
-   }
 
    public static Certificate createSampleCertificate()
    {
@@ -88,9 +70,8 @@ public class ObjectToXMLTest2
 
          final URI xslt = URI.create(XSLT_URI);
          final CertificateFactory factory = new CertificateFactoryImpl();
-         return factory.createCertificate(elements, xslt, null, SimpleCertificate.class);
-      }
-      catch (final Exception e)
+         return factory.createCertificate(elements, xslt, null);
+      }catch(final Exception e)
       {
          e.printStackTrace();
          return null;
@@ -109,9 +90,24 @@ public class ObjectToXMLTest2
          System.out.println("Transforming...");
          test.convertCertificateToXML(createSampleCertificate(), xmlFile);
          System.out.println("Success! File output to " + xmlFile);
-      }
-      catch (final Exception e)
+      }catch(final Exception e)
       {
+         e.printStackTrace();
+      }
+   }
+
+   private void convertCertificateToXML(final Certificate certificate, final File xml)
+   {
+      try
+      {
+         final TransformerFactory factory = TransformerFactory.newInstance();
+         final Transformer transformer = factory.newTransformer();
+         final Source source = certificate.getSource();
+         final StreamResult result = new StreamResult(xml);
+         transformer.transform(source, result);
+      }catch(final TransformerException e)
+      {
+         // TODO Auto-generated catch block
          e.printStackTrace();
       }
    }

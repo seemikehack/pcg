@@ -25,7 +25,6 @@ import com.philomathery.pdf.certificate.CertificateFactory;
 import com.philomathery.pdf.certificate.CertificateOptions;
 import com.philomathery.pdf.certificate.elements.CertificateElement;
 import com.philomathery.pdf.certificate.exception.CertificateException;
-import com.philomathery.pdf.certificate.exception.UnsupportedCertificateException;
 
 public class CertificateFactoryImpl implements CertificateFactory
 {
@@ -37,40 +36,35 @@ public class CertificateFactoryImpl implements CertificateFactory
       // noop
    }
 
+   @Override
+   public Certificate createCertificate(final Collection<CertificateElement> elements, final URI xslt, final CertificateOptions options) throws CertificateException
+   {
+      Objects.requireNonNull(elements, "Parameter elements must not be null");
+      if(xslt == null)
+      {
+         /*
+          * FIXME (or don't, really) the URL returned by getResource() does not
+          * comply with RFC 2396 and will therefore always cause toURI() to
+          * throw its exception.
+          */
+         // final URI defaultXslt =
+         // Activator.getContext().getBundle().getResource("res/simplecertificate.xsl").toURI();
+
+         /*
+          * NOTE this is a stop gap for the first pass effort, because this is
+          * not scalable in the first place and because this functionality will
+          * eventually get refactored out of this implementation and into a
+          * rendering implementation
+          */
+         final URI defaultXslt = URI.create(Activator.getContext().getProperty(PROP_DEFAULT_XSLT_PATH));
+         return new SimpleCertificate(elements, defaultXslt, options);
+      }
+      return new SimpleCertificate(elements, xslt, options);
+   }
+
    // used for Declarative Service
    public void dispose()
    {
       // noop
-   }
-
-   @Override
-   public Certificate createCertificate(final Collection<CertificateElement> elements, final URI xslt, final CertificateOptions options, final Class<? extends Certificate> certificateType) throws CertificateException
-   {
-      Objects.requireNonNull(elements, "Parameter elements must not be null");
-      Objects.requireNonNull(certificateType, "Parameter certificateType must not be null");
-      if (certificateType.isAssignableFrom(SimpleCertificate.class))
-      {
-         if (xslt == null)
-         {
-            /*
-             * FIXME (or don't, really) the URL returned by getResource() does
-             * not comply with RFC 2396 and will therefore always cause toURI()
-             * to throw its exception.
-             */
-//            final URI defaultXslt = Activator.getContext().getBundle().getResource("res/simplecertificate.xsl").toURI();
-
-            /*
-             * NOTE this is a stop gap for the first pass effort, because this
-             * is not scalable in the first place and because this functionality
-             * will eventually get refactored out of this implementation and
-             * into a rendering implementation
-             */
-            final URI defaultXslt = URI.create(Activator.getContext().getProperty(PROP_DEFAULT_XSLT_PATH));
-            return new SimpleCertificate(elements, defaultXslt, options);
-         }
-         else
-            return new SimpleCertificate(elements, xslt, options);
-      }
-      throw new UnsupportedCertificateException("Unsupported certificate type [" + certificateType + "]");
    }
 }

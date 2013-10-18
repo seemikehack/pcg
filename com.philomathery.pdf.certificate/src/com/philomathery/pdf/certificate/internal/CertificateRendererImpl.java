@@ -16,10 +16,9 @@
 
 package com.philomathery.pdf.certificate.internal;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.net.URI;
-import java.nio.file.FileSystemNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -46,8 +45,6 @@ import com.philomathery.pdf.certificate.exception.CertificateException;
 
 public class CertificateRendererImpl implements CertificateRenderer
 {
-   private Path filePath;
-   private Certificate certificate;
    private final FopFactory fopFactory = FopFactory.newInstance();
 
    // used for Declarative Service
@@ -63,27 +60,9 @@ public class CertificateRendererImpl implements CertificateRenderer
    }
 
    @Override
-   public void setOutputPath(final URI path) throws CertificateException
+   public void render(Certificate certificate, File outputFile) throws CertificateException
    {
-      try
-      {
-         filePath = Paths.get(path);
-      }
-      catch (final FileSystemNotFoundException e)
-      {
-         throw new CertificateException("Unable to locate output path [" + path + "]", e);
-      }
-   }
-
-   @Override
-   public void setCertificate(final Certificate certificate)
-   {
-      this.certificate = certificate;
-   }
-
-   @Override
-   public void render() throws CertificateException
-   {
+      Path filePath = Paths.get(outputFile.toURI());
       try (final OutputStream out = Files.newOutputStream(filePath, StandardOpenOption.CREATE, StandardOpenOption.WRITE))
       {
          final FOUserAgent userAgent = fopFactory.newFOUserAgent();
@@ -93,20 +72,16 @@ public class CertificateRendererImpl implements CertificateRenderer
          final Source source = certificate.getSource();
          final Result result = new SAXResult(fop.getDefaultHandler());
          transformer.transform(source, result);
-      }
-      catch (final IOException e)
+      }catch(final IOException e)
       {
          throw new CertificateException("Unable to create or open file at [" + filePath + "] for writing", e);
-      }
-      catch (final FOPException e)
+      }catch(final FOPException e)
       {
          throw new CertificateException("Unable to create or use new Formatting Objects Processor model", e);
-      }
-      catch (final TransformerConfigurationException e)
+      }catch(final TransformerConfigurationException e)
       {
          throw new CertificateException("Unable to open XSLT at [" + certificate.getXslt() + "] for reading", e);
-      }
-      catch (final TransformerException e)
+      }catch(final TransformerException e)
       {
          throw new CertificateException("Unable to transform introspected POJO source to XML", e);
       }

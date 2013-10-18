@@ -67,6 +67,11 @@ public class CertificateElement
       return content;
    }
 
+   @Override
+   public String toString(){
+      return name + ":" + content;
+   }
+
    public Map<String, String> getMulticontent()
    {
       return multicontent;
