@@ -56,7 +56,8 @@ public class ObjectToXMLTest2
          final Year year = new Year("2012-2013");
          final Meet meet = new Meet("Virtual Challenge Meet #4");
          final Place place = new Place("4th Place");
-         final Recipient recipient = new Recipient("Ryan Hogan - Abernathy HS");
+//         final Recipient recipient = new Recipient("Ryan Hogan - Abernathy HS");
+         final Recipient recipient = new Recipient("Michael Constantine Loyola \"Kolbe\" Chesterton - College Station Independent School District");
          final Event event = new Event("2A Calculator");
 
          // the API expects to receive sorted content, hence, LinkedHashMap
@@ -71,7 +72,8 @@ public class ObjectToXMLTest2
          final URI xslt = URI.create(XSLT_URI);
          final CertificateFactory factory = new CertificateFactoryImpl();
          return factory.createCertificate(elements, xslt, null);
-      }catch(final Exception e)
+      }
+      catch (final Exception e)
       {
          e.printStackTrace();
          return null;
@@ -90,7 +92,8 @@ public class ObjectToXMLTest2
          System.out.println("Transforming...");
          test.convertCertificateToXML(createSampleCertificate(), xmlFile);
          System.out.println("Success! File output to " + xmlFile);
-      }catch(final Exception e)
+      }
+      catch (final Exception e)
       {
          e.printStackTrace();
       }
@@ -105,7 +108,8 @@ public class ObjectToXMLTest2
          final Source source = certificate.getSource();
          final StreamResult result = new StreamResult(xml);
          transformer.transform(source, result);
-      }catch(final TransformerException e)
+      }
+      catch (final TransformerException e)
       {
          // TODO Auto-generated catch block
          e.printStackTrace();

@@ -33,6 +33,9 @@
          </layout-master-set>
          <fo:page-sequence id="section_s1" format="" master-reference="s1" initial-page-number="1">
             <fo:flow flow-name="xsl-region-body">
+               <fo:block-container absolute-position="absolute" top="-2cm" left="-2.5cm" width="11in" height="8.5in" background-image="border.jpg">
+                  <fo:block/>
+               </fo:block-container>
                <fo:block color="#000000" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" start-indent="3.5in" text-indent="0.5in">
                   <xsl:value-of select="year"/>
                </fo:block>
