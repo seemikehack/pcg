@@ -30,11 +30,12 @@ public interface CertificateRenderer
     * 
     * @param certificate
     *           The certificate to render.
-    * 
     * @param outputFile
     *           the output file to render to
+    * @param configurationFile
+    *           the file containing FOP factory configuration, e.g., fonts
     * @throws CertificateException
     *            if unable to locate the path to which to write the final file
     */
-   void render(Certificate certificate, File outputFile) throws CertificateException;
+   void render(Certificate certificate, File outputFile, File configurationFile) throws CertificateException;
 }

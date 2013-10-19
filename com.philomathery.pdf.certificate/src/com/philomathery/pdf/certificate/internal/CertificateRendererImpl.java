@@ -38,6 +38,7 @@ import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
 import org.apache.fop.apps.FopFactory;
 import org.apache.xmlgraphics.util.MimeConstants;
+import org.xml.sax.SAXException;
 
 import com.philomathery.pdf.certificate.Certificate;
 import com.philomathery.pdf.certificate.CertificateRenderer;
@@ -60,11 +61,19 @@ public class CertificateRendererImpl implements CertificateRenderer
    }
 
    @Override
-   public void render(Certificate certificate, File outputFile) throws CertificateException
+   public void render(final Certificate certificate, final File outputFile, final File configurationFile) throws CertificateException
    {
-      Path filePath = Paths.get(outputFile.toURI());
+      final Path filePath = Paths.get(outputFile.toURI());
       try (final OutputStream out = Files.newOutputStream(filePath, StandardOpenOption.CREATE, StandardOpenOption.WRITE))
       {
+         try
+         {
+            fopFactory.setUserConfig(configurationFile);
+         }
+         catch (IOException | SAXException e)
+         {
+            throw new CertificateException("Unable to open or parse configuration file", e);
+         }
          final FOUserAgent userAgent = fopFactory.newFOUserAgent();
          final Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, out);
          final TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -72,16 +81,20 @@ public class CertificateRendererImpl implements CertificateRenderer
          final Source source = certificate.getSource();
          final Result result = new SAXResult(fop.getDefaultHandler());
          transformer.transform(source, result);
-      }catch(final IOException e)
+      }
+      catch (final IOException e)
       {
          throw new CertificateException("Unable to create or open file at [" + filePath + "] for writing", e);
-      }catch(final FOPException e)
+      }
+      catch (final FOPException e)
       {
          throw new CertificateException("Unable to create or use new Formatting Objects Processor model", e);
-      }catch(final TransformerConfigurationException e)
+      }
+      catch (final TransformerConfigurationException e)
       {
          throw new CertificateException("Unable to open XSLT at [" + certificate.getXslt() + "] for reading", e);
-      }catch(final TransformerException e)
+      }
+      catch (final TransformerException e)
       {
          throw new CertificateException("Unable to transform introspected POJO source to XML", e);
       }
