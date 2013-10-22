@@ -17,9 +17,6 @@
 package com.philomathery.pdf.certificate.internal;
 
 import java.net.URI;
-import java.nio.file.FileSystemNotFoundException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -51,12 +48,6 @@ public class SimpleCertificate implements Certificate
       return Collections.unmodifiableCollection(elements);
    }
 
-   @Override
-   public Path getXslt() throws FileSystemNotFoundException
-   {
-      return Paths.get(xslt);
-   }
-
    public CertificateOptions getOptions()
    {
       return options;
@@ -66,5 +57,11 @@ public class SimpleCertificate implements Certificate
    public Source getSource()
    {
       return new SAXSource(new CertificateXMLReader(), new CertificateInputSource(this));
+   }
+
+   @Override
+   public URI getXslt()
+   {
+      return xslt;
    }
 }

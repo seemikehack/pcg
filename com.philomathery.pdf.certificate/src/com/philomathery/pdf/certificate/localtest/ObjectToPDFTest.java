@@ -20,6 +20,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
 import javax.xml.transform.Result;
@@ -71,7 +72,7 @@ public class ObjectToPDFTest
          final FOUserAgent userAgent = fopFactory.newFOUserAgent();
          final Fop fop = fopFactory.newFop(MimeConstants.MIME_PDF, userAgent, out);
          final TransformerFactory transformerFactory = TransformerFactory.newInstance();
-         final Transformer transformer = transformerFactory.newTransformer(new StreamSource(Files.newInputStream(certificate.getXslt(), StandardOpenOption.READ)));
+         final Transformer transformer = transformerFactory.newTransformer(new StreamSource(Files.newInputStream(Paths.get(certificate.getXslt()), StandardOpenOption.READ)));
          final Source source = certificate.getSource();
          final Result result = new SAXResult(fop.getDefaultHandler());
          transformer.transform(source, result);

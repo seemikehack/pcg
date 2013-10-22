@@ -16,7 +16,7 @@
 
 package com.philomathery.pdf.certificate;
 
-import java.nio.file.Path;
+import java.net.URI;
 import java.util.Collection;
 
 import javax.xml.transform.Source;
@@ -28,9 +28,9 @@ import com.philomathery.pdf.certificate.elements.CertificateElement;
  */
 public interface Certificate
 {
+   Collection<CertificateElement> getElements();
+
    Source getSource();
 
-   Path getXslt();
-
-   Collection<CertificateElement> getElements();
+   URI getXslt();
 }
