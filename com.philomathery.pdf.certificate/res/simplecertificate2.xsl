@@ -36,25 +36,25 @@
                <fo:block-container absolute-position="absolute" top="-2cm" left="-2.5cm" width="11in" height="8.5in" background-image="border.jpg">
                   <fo:block/>
                </fo:block-container>
-               <fo:block color="#000000" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" start-indent="3.5in" text-indent="0.5in">
+               <fo:block color="#000000" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" start-indent="3.5in" text-indent="0.5in">
                   <xsl:value-of select="year"/>
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="65.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="65.0pt" line-height="100%" space-after="0in" text-align="center">
                   <xsl:value-of select="meet"/>
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="80.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="80.0pt" line-height="100%" space-after="0in" text-align="center">
                   <xsl:value-of select="place"/>
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" text-align="center">
                   has been awarded to
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="40.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="40.0pt" line-height="100%" space-after="0in" text-align="center">
                   <xsl:value-of select="recipient"/>
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="18.0pt" line-height="100%" space-after="0in" text-align="center">
                   in
                </fo:block>
-               <fo:block color="#000000" margin-top="3mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="50.0pt" line-height="100%" space-after="0in" text-align="center">
+               <fo:block color="#000000" margin-top="3mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="50.0pt" line-height="100%" space-after="0in" text-align="center">
                   <xsl:value-of select="event"/>
                </fo:block>
                <xsl:apply-templates select="officiator"/>
@@ -63,12 +63,12 @@
       </fo:root>
    </xsl:template>
    <xsl:template match="officiator">
-      <fo:block color="#000000" margin-top="25mm" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="14.0pt" line-height="100%" space-after="0in" text-indent="0.5in" text-align-last="justify">
+      <fo:block color="#000000" margin-top="25mm" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="14.0pt" line-height="100%" space-after="0in" text-indent="0.5in" text-align-last="justify">
          <xsl:value-of select="name"/>
          <fo:leader leader-pattern="space"/>
          <xsl:value-of select="date"/>
       </fo:block>
-      <fo:block color="#000000" font-family="Brush Script MT Italic" font-weight="normal" font-style="normal" font-size="14.0pt" line-height="100%" space-after="0in" text-indent="0.5in">
+      <fo:block color="#000000" font-family="ALEX BRUSH" font-weight="normal" font-style="normal" font-size="14.0pt" line-height="100%" space-after="0in" text-indent="0.5in">
          <xsl:value-of select="title"/>
       </fo:block>
    </xsl:template>

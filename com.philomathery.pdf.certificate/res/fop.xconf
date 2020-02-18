@@ -20,6 +20,9 @@
             <font embed-url="BRUSHSCI.TTF" kerning="yes">
                <font-triplet name="Brush Script MT Italic" style="normal" weight="normal"/>
             </font>
+            <font embed-url="AlexBrush-Regular.ttf" kerning="yes">
+               <font-triplet name="ALEX BRUSH" style="normal" weight="normal"/>
+            </font>
          </fonts>
       </renderer>
    </renderers>
