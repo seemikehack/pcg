@@ -40,7 +40,9 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.fop.apps.FOPException;
 import org.apache.fop.apps.FOUserAgent;
 import org.apache.fop.apps.Fop;
+import org.apache.fop.apps.FopConfParser;
 import org.apache.fop.apps.FopFactory;
+import org.apache.fop.apps.FopFactoryBuilder;
 import org.apache.xmlgraphics.util.MimeConstants;
 import org.xml.sax.SAXException;
 
@@ -49,8 +51,8 @@ import com.philomathery.pdf.certificate.CertificateRenderer;
 import com.philomathery.pdf.certificate.exception.CertificateException;
 
 public class CertificateRendererImpl implements CertificateRenderer{
-   private final FopFactory fopFactory = FopFactory.newInstance();
    private Map<URI, Transformer> transformerCache = new ConcurrentHashMap<>(5);
+   private Map<File, FopFactory> factoryCache = new ConcurrentHashMap<>(5);
 
    // used for Declarative Service
    public void activate(){
@@ -63,13 +65,19 @@ public class CertificateRendererImpl implements CertificateRenderer{
    }
 
    @Override
-   public void render(final Certificate certificate, final File outputFile, final String configurationUri) throws CertificateException{
+   public void render(final Certificate certificate, final File outputFile, final File configurationFile) throws CertificateException{
       final Path filePath = Paths.get(outputFile.toURI());
       try (final OutputStream out = Files.newOutputStream(filePath, StandardOpenOption.CREATE, StandardOpenOption.WRITE)){
-         if(configurationUri != null){
+         FopFactory fopFactory = factoryCache.get(configurationFile);
+         if(fopFactory == null){
             try{
                long startTime = System.currentTimeMillis();
-               fopFactory.setUserConfig(configurationUri);
+               // parsing configuration
+               FopConfParser parser = new FopConfParser(configurationFile);
+               // building the factory with the user options
+               FopFactoryBuilder builder = parser.getFopFactoryBuilder();
+               fopFactory = builder.build();
+               factoryCache.put(configurationFile, fopFactory);
                System.out.println("Fop config time: " + (System.currentTimeMillis() - startTime));
             }catch(IOException | SAXException e){
                throw new CertificateException("Unable to open or parse configuration file", e);

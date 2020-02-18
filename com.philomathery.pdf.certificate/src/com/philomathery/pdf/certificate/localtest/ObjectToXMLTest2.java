@@ -43,20 +43,18 @@ import com.philomathery.pdf.certificate.internal.CertificateFactoryImpl;
 /**
  * An example test harness for proof of concept.
  */
-public class ObjectToXMLTest2
-{
-   private static final String XSLT_URI = "file:///home/michael/workspace/pdfcertgen/com.philomathery.pdf.certificate/res/simplecertificate2.xsl";
-   private static final String BASE_OUTPUT_DIR = "/home/michael";
+public class ObjectToXMLTest2{
+   private static final String XSLT_URI = new File(".").toURI() + "/res/simplecertificate2.xsl";
+   private static final String BASE_OUTPUT_DIR = ".";
    private static final String FILE_NAME = "award.xml";
 
-   public static Certificate createSampleCertificate()
-   {
-      try
-      {
+   public static Certificate createSampleCertificate(){
+      try{
          final Year year = new Year("2012-2013");
          final Meet meet = new Meet("Virtual Challenge Meet #4");
          final Place place = new Place("4th Place");
-//         final Recipient recipient = new Recipient("Ryan Hogan - Abernathy HS");
+         // final Recipient recipient = new Recipient("Ryan Hogan - Abernathy
+         // HS");
          final Recipient recipient = new Recipient("Michael Constantine Loyola \"Kolbe\" Chesterton - College Station Independent School District");
          final Event event = new Event("2A Calculator");
 
@@ -72,18 +70,14 @@ public class ObjectToXMLTest2
          final URI xslt = URI.create(XSLT_URI);
          final CertificateFactory factory = new CertificateFactoryImpl();
          return factory.createCertificate(elements, xslt, null);
-      }
-      catch (final Exception e)
-      {
+      }catch(final Exception e){
          e.printStackTrace();
          return null;
       }
    }
 
-   public static void main(final String[] args)
-   {
-      try
-      {
+   public static void main(final String[] args){
+      try{
          System.out.println("Starting ObjectToXMLTest");
          System.out.println("Initializing...");
          final File baseDir = new File(BASE_OUTPUT_DIR);
@@ -92,25 +86,19 @@ public class ObjectToXMLTest2
          System.out.println("Transforming...");
          test.convertCertificateToXML(createSampleCertificate(), xmlFile);
          System.out.println("Success! File output to " + xmlFile);
-      }
-      catch (final Exception e)
-      {
+      }catch(final Exception e){
          e.printStackTrace();
       }
    }
 
-   private void convertCertificateToXML(final Certificate certificate, final File xml)
-   {
-      try
-      {
+   private void convertCertificateToXML(final Certificate certificate, final File xml){
+      try{
          final TransformerFactory factory = TransformerFactory.newInstance();
          final Transformer transformer = factory.newTransformer();
          final Source source = certificate.getSource();
          final StreamResult result = new StreamResult(xml);
          transformer.transform(source, result);
-      }
-      catch (final TransformerException e)
-      {
+      }catch(final TransformerException e){
          // TODO Auto-generated catch block
          e.printStackTrace();
       }

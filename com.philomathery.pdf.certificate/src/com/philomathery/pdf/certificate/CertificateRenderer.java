@@ -23,8 +23,7 @@ import com.philomathery.pdf.certificate.exception.CertificateException;
 /**
  * Entry point for rendering the end-product PDF from a {@link Certificate}.
  */
-public interface CertificateRenderer
-{
+public interface CertificateRenderer{
    /**
     * Render the certificate to the output path.
     * 
@@ -32,11 +31,10 @@ public interface CertificateRenderer
     *           The certificate to render.
     * @param outputFile
     *           the output file to render to
-    * @param configurationUri
-    *           the url to a resource containing FOP factory configuration,
-    *           e.g., fonts
+    * @param configurationFile
+    *           a file containing FOP factory configuration, e.g., fonts
     * @throws CertificateException
     *            if unable to locate the path to which to write the final file
     */
-   void render(Certificate certificate, File outputFile, String configurationUri) throws CertificateException;
+   void render(Certificate certificate, File outputFile, File configurationFile) throws CertificateException;
 }
