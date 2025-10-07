@@ -18,19 +18,8 @@ Bundle-ActivationPolicy: lazy
   com.philomathery.pdf.certificate.elements2,\
   com.philomathery.pdf.certificate.exception
 
-# Include embedded libraries on the bundle classpath as in legacy MANIFEST
-Bundle-ClassPath: .,\
-  lib/batik-all-1.12.jar,\
-  lib/commons-io-1.3.1.jar,\
-  lib/commons-logging-1.0.4.jar,\
-  lib/fontbox-2.0.16.jar,\
-  lib/fop.jar,\
-  lib/serializer-2.7.2.jar,\
-  lib/xalan-2.7.2.jar,\
-  lib/xercesImpl-2.12.0.jar,\
-  lib/xml-apis-1.4.01.jar,\
-  lib/xml-apis-ext-1.3.04.jar,\
-  lib/xmlgraphics-commons-2.4.jar
+# Keep default classpath; depend on external bundles/libs via OSGi
+Bundle-ClassPath: .
 
 # Service component descriptors
 Service-Component: META-INF/certificateFactory.xml,META-INF/certificateRenderer.xml

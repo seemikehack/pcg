@@ -10,4 +10,7 @@
 # Let bnd resolve dependencies automatically
 -resolve: auto
 
+# Enable maven repository for resolver
+-plugin: aQute.bnd.repository.maven.pom.provider.BndPomRepository;name=LocalMaven;releaseUrls='https://repo1.maven.org/maven2/';snapshots=false
+
 
