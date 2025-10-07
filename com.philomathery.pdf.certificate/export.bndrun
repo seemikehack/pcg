@@ -1,0 +1,13 @@
+-runee: JavaSE-21
+
+-runrequires: \
+  osgi.identity;filter:='(osgi.identity=com.philomathery.pdf.certificate)'
+
+-export: true
+-exporter: p2
+-output: ${project}/target/p2-repo
+
+# Let bnd resolve dependencies automatically
+-resolve: auto
+
+
