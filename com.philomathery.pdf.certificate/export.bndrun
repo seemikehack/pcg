@@ -3,9 +3,9 @@
 -runrequires: \
   osgi.identity;filter:='(osgi.identity=com.philomathery.pdf.certificate)'
 
--export: true
--exporter: p2
--output: ${project}/target/p2-repo
+# Enable p2 exporter and define export target
+-plugin: aQute.bnd.exporter.p2.P2Exporter
+-export: pcg;type=p2;name=pcg;out=${project}/target/p2-repo
 
 # Let bnd resolve dependencies automatically
 -resolve: auto
