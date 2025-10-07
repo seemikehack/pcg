@@ -6,12 +6,13 @@ PDF.
 A major refactor is coming that will significantly change the workflow of this
 library. You have been warned.
 
-## Build (Java 21 + Maven + Bnd)
+## Build (Java 11+ runtime, built with JDK 21)
 
 Prerequisites:
 
-- Java 21 (ensure your shell uses JDK 21)
+- Java 11+ runtime (bundle requires Java 11 or newer)
 - Maven 3.8+
+- Build machine JDK 21 recommended (project compiles with --release 11)
 
 Build the bundle and export a p2 repository:
 
@@ -35,7 +36,7 @@ Add the generated p2 repository to your Eclipse Target Platform:
 2. Edit or create a target → Add → Software Site
 3. Use `.../com.philomathery.pdf.certificate/target/p2-repo`
 
-Note: The bundle requires Java 21. Ensure your Eclipse installation and target platform support Java 21.
+Note: The bundle requires Java 11+. Ensure your Eclipse installation and target platform supports Java 11 or newer.
 
 ## How To Use
 Get a `CertificateFactory` and a `CertificateRenderer` via OSGi, and follow the

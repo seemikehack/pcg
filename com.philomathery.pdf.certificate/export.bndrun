@@ -1,4 +1,4 @@
--runee: JavaSE-21
+-runee: JavaSE-11
 
 -runrequires: \
   osgi.identity;filter:='(osgi.identity=com.philomathery.pdf.certificate)'

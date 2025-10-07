@@ -3,9 +3,9 @@ Bundle-Name: PDF Certificate Generator
 Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Vendor: PHILOMATHERY
 
-# Target Java 21
--runee: JavaSE-21
-Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version>=21))"
+# Target Java 11 minimum (built with JDK 21)
+-runee: JavaSE-11
+Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version>=11))"
 
 # Preserve legacy activator and lazy activation
 Bundle-Activator: com.philomathery.pdf.certificate.internal.Activator
