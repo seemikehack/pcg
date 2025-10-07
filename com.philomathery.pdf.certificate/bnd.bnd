@@ -1,0 +1,34 @@
+Bundle-SymbolicName: com.philomathery.pdf.certificate
+Bundle-Name: PDF Certificate Generator
+Bundle-Version: 1.0.0.SNAPSHOT
+Bundle-Vendor: PHILOMATHERY
+
+# Target Java 11 minimum (built with JDK 21)
+-runee: JavaSE-11
+Require-Capability: osgi.ee; filter:="(&(osgi.ee=JavaSE)(version>=11))"
+
+# Preserve legacy activator and lazy activation
+Bundle-Activator: com.philomathery.pdf.certificate.internal.Activator
+Bundle-ActivationPolicy: lazy
+
+# Export public APIs; hide internal packages
+-exportcontents: \
+  com.philomathery.pdf.certificate,\
+  com.philomathery.pdf.certificate.elements,\
+  com.philomathery.pdf.certificate.elements2,\
+  com.philomathery.pdf.certificate.exception
+
+# Keep default classpath; depend on external bundles/libs via OSGi
+Bundle-ClassPath: .
+
+# Service component descriptors
+Service-Component: META-INF/certificateFactory.xml,META-INF/certificateRenderer.xml
+
+# OSGi DS
+Import-Package: org.osgi.framework, *
+
+# Baselining: compare with last release when available
+-baseline: *;\
+  ignore=minor
+
+

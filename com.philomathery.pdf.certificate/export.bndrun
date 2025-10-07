@@ -1,0 +1,16 @@
+-runee: JavaSE-11
+
+-runrequires: \
+  osgi.identity;filter:='(osgi.identity=com.philomathery.pdf.certificate)'
+
+-export: true
+-exporter: p2
+-output: ${project}/target/p2-repo
+
+# Let bnd resolve dependencies automatically
+-resolve: auto
+
+# Enable maven repository for resolver
+-plugin: aQute.bnd.repository.maven.pom.provider.BndPomRepository;name=LocalMaven;releaseUrls='https://repo1.maven.org/maven2/';snapshots=false
+
+
