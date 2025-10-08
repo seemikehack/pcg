@@ -1,6 +1,5 @@
 Bundle-SymbolicName: com.philomathery.pdf.certificate
 Bundle-Name: PDF Certificate Generator
-Bundle-Version: 1.0.0.SNAPSHOT
 Bundle-Vendor: PHILOMATHERY
 
 # Target Java 11 minimum (built with JDK 21)
