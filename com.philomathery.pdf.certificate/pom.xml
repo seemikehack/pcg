@@ -37,26 +37,7 @@
         </executions>
       </plugin>
 
-      <plugin>
-        <groupId>biz.aQute.bnd</groupId>
-        <artifactId>bnd-export-maven-plugin</artifactId>
-        <version>${bnd.version}</version>
-        <executions>
-          <execution>
-            <id>export-p2</id>
-            <phase>package</phase>
-            <goals>
-              <goal>export</goal>
-            </goals>
-            <configuration>
-              <bndruns>
-                <bndrun>${project.basedir}/export.bndrun</bndrun>
-              </bndruns>
-              <failOnExportError>true</failOnExportError>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
+      <!-- p2 exporter removed; using GitHub Packages (Maven) for distribution -->
     </plugins>
     <resources>
       <resource>
