@@ -44,4 +44,6 @@ jobs:
         working-directory: com.philomathery.pdf.certificate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mvn -B -DskipTests deploy
+        run: |
+          REV=${GITHUB_REF_NAME#v}
+          mvn -B -DskipTests -Drevision="$REV" deploy
