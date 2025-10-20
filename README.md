@@ -14,17 +14,59 @@ Prerequisites:
 - Maven 3.8+
 - Build machine JDK 21 recommended (project compiles with --release 11)
 
-Build the bundle:
+Build the modules:
 
 ```bash
-cd com.philomathery.pdf.certificate
 mvn clean package
 ```
 
 Artifacts:
 
-- OSGi bundle: `com.philomathery.pdf.certificate/target/com.philomathery.pdf.certificate-<version>.jar`
- 
+- Renderer jar: `pgc-render/target/pgc-render-<version>.jar`
+- CLI jar: `pcg-cli/target/pcg-cli-<version>.jar`
+
+## Run CLI in Docker
+
+Option A: Download from GitHub Releases at build time
+
+```dockerfile
+FROM eclipse-temurin:21-jre
+ARG PCG_VERSION=2.0.0
+ADD https://github.com/ccmcomputing/pcg/releases/download/v${PCG_VERSION}/pcg-cli-${PCG_VERSION}.jar /opt/pcg/pcg-cli.jar
+ENTRYPOINT ["java","-jar","/opt/pcg/pcg-cli.jar"]
+```
+
+Build and run:
+```bash
+docker build -t pcg-cli:${PCG_VERSION} --build-arg PCG_VERSION=2.0.0 .
+docker run --rm -v "$PWD":/work pcg-cli:${PCG_VERSION} \
+  --xml /work/input.xml \
+  --xslt /work/styles/simplecertificate2.xsl \
+  --out /work/out.pdf \
+  --conf /work/res/fop.xconf
+```
+
+Option B: Multi-stage fetch with curl
+
+```dockerfile
+FROM alpine:3.20 AS fetch
+ARG PCG_VERSION=2.0.0
+RUN apk add --no-cache curl \
+ && curl -fsSL -o /pcg-cli.jar https://github.com/ccmcomputing/pcg/releases/download/v${PCG_VERSION}/pcg-cli-${PCG_VERSION}.jar
+
+FROM eclipse-temurin:21-jre
+COPY --from=fetch /pcg-cli.jar /opt/pcg/pcg-cli.jar
+ENTRYPOINT ["java","-jar","/opt/pcg/pcg-cli.jar"]
+```
+
+CLI usage inside container:
+```bash
+java -jar /opt/pcg/pcg-cli.jar \
+  --xml /work/input.xml \
+  --xslt /work/styles/simplecertificate2.xsl \
+  --out /work/out.pdf \
+  --conf /work/res/fop.xconf
+```
 
 ## Consuming from Maven (GitHub Packages)
 

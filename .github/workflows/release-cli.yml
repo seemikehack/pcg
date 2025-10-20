@@ -1,0 +1,40 @@
+name: Release CLI jar
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+
+      - name: Build CLI with tag version
+        working-directory: pcg-cli
+        run: |
+          REV=${GITHUB_REF_NAME#v}
+          mvn -B -DskipTests -Drevision="${REV}" clean package
+          ls -l target
+
+      - name: Create GitHub Release and upload asset
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          draft: false
+          prerelease: false
+          files: |
+            pcg-cli/target/pcg-cli-${{ github.ref_name#v }}.jar
+
